@@ -76,6 +76,8 @@ For each function or method the section is actually about (not every private hel
 
 **Markdown formatting:** within a subsection, keep lists flat (no nesting) — a blank line before and after any list, no indentation deeper than a plain top-level bullet needs. Function names, `Args`/`Returns` bullets, and code examples are all plain top-level content under their `###` heading, never nested inside something else.
 
+**Every file reference is a clickable relative link, not a plain code span** — `` [`<file>`](<relative-path>) `` rather than just `` `<file>` `` — so the reader can jump straight to the real file from an editor that resolves relative Markdown links (VSCode's preview and editor both do). Compute `<relative-path>` from `study_plan.md`'s own location to the actual file, e.g. if the plan lives at `<replica>/notebooks/study_plan.md` and the target is `<original-repo>/pkg/module.py` two directories up and back down, that's `../../<original-repo>/pkg/module.py` — verify it resolves (e.g. `ls` the computed path) before writing it, don't just eyeball the directory count. Keep the backticks *inside* the link text (`` [`file.py`](path) ``, not `` `[file.py](path)` ``) so it still reads as code.
+
 English:
 
 ```markdown
@@ -83,16 +85,16 @@ English:
 
 ### Reference files
 
-- `<file>` - <one line on what it demonstrates>
-- `<file_2>` - <one line on what it demonstrates>
+- [`<file>`](<relative-path>) - <one line on what it demonstrates>
+- [`<file_2>`](<relative-path>) - <one line on what it demonstrates>
 
 ### Where they're used
 
 (omit this subsection if no reference file above is a module)
 
-**`<file>`**
-1. `<caller file>` - uses it for <what> in <where in that file's flow>
-2. `<caller file>` - uses it for <what> in <where in that file's flow>
+**[`<file>`](<relative-path>)**
+1. [`<caller file>`](<relative-path>) - uses it for <what> in <where in that file's flow>
+2. [`<caller file>`](<relative-path>) - uses it for <what> in <where in that file's flow>
 
 ### What each function is for
 
@@ -112,7 +114,7 @@ function_name(<real example input>)
 ```
 → `<the real, executed output>`
 
-Used in: `<file>`, `<file_2>`.
+Used in: [`<file>`](<relative-path>), [`<file_2>`](<relative-path>).
 
 ### Proposed notebook name
 
@@ -120,8 +122,8 @@ Used in: `<file>`, `<file_2>`.
 
 ### Supporting material
 
-- `<support file prepared for this section>` - <what it exemplifies>
-- `<support file prepared for this section>` - <what it exemplifies>
+- [`<support file prepared for this section>`](<relative-path>) - <what it exemplifies>
+- [`<support file prepared for this section>`](<relative-path>) - <what it exemplifies>
 ```
 
 Español:
@@ -131,16 +133,16 @@ Español:
 
 ### Archivos de referencia
 
-- `<archivo>` - <una línea sobre qué demuestra>
-- `<archivo_2>` - <una línea sobre qué demuestra>
+- [`<archivo>`](<ruta-relativa>) - <una línea sobre qué demuestra>
+- [`<archivo_2>`](<ruta-relativa>) - <una línea sobre qué demuestra>
 
 ### Dónde se usan
 
 (omitir esta subsección si ningún archivo de referencia de arriba es un módulo)
 
-**`<archivo>`**
-1. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
-2. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
+**[`<archivo>`](<ruta-relativa>)**
+1. [`<archivo que lo usa>`](<ruta-relativa>) - lo usa para <qué> en <dónde de su flujo>
+2. [`<archivo que lo usa>`](<ruta-relativa>) - lo usa para <qué> en <dónde de su flujo>
 
 ### Qué resuelve cada función
 
@@ -158,7 +160,7 @@ nombre_funcion(<input real de ejemplo>)
 ```
 → `<el output real, ya ejecutado>`
 
-Se usa en: `<archivo>`, `<archivo_2>`.
+Se usa en: [`<archivo>`](<ruta-relativa>), [`<archivo_2>`](<ruta-relativa>).
 
 ### Propuesta de nombre del notebook
 
@@ -166,8 +168,8 @@ Se usa en: `<archivo>`, `<archivo_2>`.
 
 ### Material de apoyo
 
-- `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
-- `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
+- [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica>
+- [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica>
 ```
 
 **Every other section gets only:**
