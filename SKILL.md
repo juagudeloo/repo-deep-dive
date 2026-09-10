@@ -18,7 +18,9 @@ Both phases apply to any codebase, any language, any domain. Nothing here is spe
 
 Ask a short, targeted set of questions (not an essay) about what the reader already knows and doesn't, relative to what this repo will require — its language, its frameworks, its domain (e.g. "have you worked with distributed data processing before?", "do you know framework X?", "have you done ML before, or only heard the terms?"). Everything downstream — how much needs explaining, what deserves an appendix, what can be assumed — depends on this. Don't skip it, and don't guess from a resume alone; ask.
 
-Also confirm sensitivity up front: is this a work codebase, someone else's code with real names attached, or anything that shouldn't leave the reader's own machine? If there's any doubt, ask before doing anything that could make the analysis visible beyond the reader — publishing a document, committing candid criticism of colleagues' code to a shared repo, or (as here) folding a lesson learned from this specific codebase into a general-purpose skill file that gets reused elsewhere. When in doubt, keep it local and ask.
+**Also explicitly confirm the output language** for every document this skill produces — `repo_summary.md`, `study_plan.md`, and the ongoing conversation itself. This skill is used by both Spanish- and English-speaking readers; don't infer it from the language of the reader's request alone (a bilingual reader may ask in one language and want the deliverable in the other), and don't silently default to English. Ask once, up front, and use that same language consistently everywhere afterward — including the per-section template headers in Phase 2 (see the note there).
+
+Also confirm sensitivity up front: is this a work codebase, someone else's code with real names attached, or anything that shouldn't leave the reader's own machine? If there's any doubt, ask before doing anything that could make the analysis visible beyond the reader — publishing a document, committing candid criticism of colleagues' code to a shared repo, or folding a lesson learned from this specific codebase into a general-purpose skill file that gets reused elsewhere. When in doubt, keep it local and ask.
 
 ---
 
@@ -66,19 +68,36 @@ Write a single `study_plan.md` inside the replica's notebooks directory. Its job
 
 **Ordering principle:** move from the most concrete/data-facing concept to the most abstract, then to how it's assembled into the whole system, then to business logic layered on top of the core algorithm's raw output, then to how it scales or deploys. Roughly: (1) data cleaning/representation → (2) the core algorithm, built from its smallest sub-piece up to the full thing → (3) business rules/post-processing on top of the algorithm's output → (4) orchestration/scaling/deployment → (5) anything not yet built, listed last, not skipped.
 
-**Per-section template — but only for the section currently being worked on:**
+**Per-section template — but only for the section currently being worked on.** Use the headers in whichever output language was confirmed in the calibration step; both fixed variants are given below (do not mix the two, and do not invent a third phrasing).
+
+English:
 
 ```markdown
 ## N. <topic>
 
-Archivos de referencia en el repo original:
+Reference files in the original repo:
     `<file>` - <one line on what it demonstrates>
+
+Proposed notebook name:
+`0N-<slug>.ipynb`
+
+Supporting material:
+    `<support file prepared for this section>` - <what it exemplifies>
+```
+
+Español:
+
+```markdown
+## N. <tema>
+
+Archivos de referencia en el repo original:
+    `<archivo>` - <una línea sobre qué demuestra>
 
 Propuesta de nombre del notebook:
 `0N-<slug>.ipynb`
 
 Material de apoyo:
-    `<support file prepared for this section>` - <what it exemplifies>
+    `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
 ```
 
 **Every other section gets only:**
