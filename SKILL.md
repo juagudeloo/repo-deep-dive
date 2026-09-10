@@ -188,6 +188,32 @@ Nothing else for the inactive sections — no file list, no notebook name, no su
 3. Stop, and wait for the reader to say they've finished that notebook.
 4. Only then fill in the next section's full template (files, notebook name, support material) and repeat.
 
+### Track improvement ideas as they surface, in their own document
+
+Studying real code closely enough to write a notebook about it surfaces things the upfront `repo_summary.md` pass never catches — often only found by testing a real alternative once you're deep enough in one function to try (e.g. discovering a well-established library does what a hand-rolled heuristic attempts, but more robustly, and proving it with a real comparison rather than asserting it). Capture these in a second living document, `improvement_ideas.md`, in the same directory as `study_plan.md` — separate from `repo_summary.md`'s own "Improvement ideas" section, which is a one-time broad survey done during the initial read-through; this one accumulates gradually, only as real findings surface while working through the plan.
+
+Structure it with one `##` heading per `study_plan.md` topic, using the exact same numbers and titles, so the two documents cross-reference cleanly. Only add a section once it actually has a finding in it — don't pre-populate empty sections for topics not yet reached, same reasoning as the study plan's own inactive-section rule.
+
+For each idea, give the reader real decision-support, not a unilateral recommendation — this document exists so they can bring it to whoever owns the codebase (a manager, a tech lead) and discuss it, not so Claude decides for them:
+
+```markdown
+## N. <topic, matching study_plan.md exactly>
+
+### <short name for the idea>
+
+Qué es: <one or two sentences>.
+
+A favor:
+- <concrete advantage>
+- <concrete advantage>
+
+En contra:
+- <concrete tradeoff or cost>
+- <concrete tradeoff or cost>
+
+Evidencia: <the real comparison/demo that supports this — never a claim without one; link or reproduce the actual test run>.
+```
+
 ### What never belongs in the replica
 
 - The original repo's real production code, copied wholesale — the replica is built from understanding, not copy-paste.
