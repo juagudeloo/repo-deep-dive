@@ -74,6 +74,10 @@ For each reference file that is a **module** (defines functions/classes consumed
 
 **Markdown formatting matters here** — this nested structure only renders as an actual list (not a single run-on paragraph) if it follows standard Markdown list rules: a blank line before the nested "Used in"/"Se utiliza en" block, and its content indented exactly 2 spaces (aligned under a `- ` bullet's own text, not deeper). Don't indent by 4+ spaces or skip the blank line — both cause common renderers to collapse the whole thing into one paragraph. The templates below already show the correct spacing; copy it exactly.
 
+**For each function or method the section is actually about** (not every private helper in the file — just the ones the notebook will exercise), add a flat "function purposes" block: a Google-style summary (purpose, `Args` with types, `Returns`/`Raises` with types) plus at least one worked example. **Run the example for real and paste its actual output — never compute it by hand.** String/regex transformations are exactly the kind of thing that looks obvious and is subtly wrong; a hand-guessed "expected" output that doesn't match the real function teaches the wrong lesson. Prefer an example that demonstrates *why the function exists* (e.g., two differently-formatted inputs that collapse to the identical output) over an arbitrary happy-path call.
+
+Keep this flat too, for the same rendering reason as above: the function name as its own inline-code line (not a list item), `Args`/`Returns` as a plain top-level bullet list, then a fenced code example followed by its real output — no nesting.
+
 English:
 
 ```markdown
@@ -88,6 +92,22 @@ Reference files in the original repo:
   2. `<caller file>` - uses it for <what> in <where in that file's flow>
 
 - `<file_2>` - <one line on what it demonstrates>
+
+What each function is for:
+
+`function_name(arg1, arg2)`
+
+Purpose: <what problem this function solves, in one or two sentences>.
+
+- `arg1` (`<type>`): <what it is>
+- `arg2` (`<type>`, default `<value>`): <what it is>
+
+Returns `<type>`: <what comes back, including edge cases like None/empty>.
+
+```python
+function_name(<real example input>)
+```
+→ `<the real, executed output>`
 
 Proposed notebook name:
 `0N-<slug>.ipynb`
@@ -112,6 +132,22 @@ Archivos de `<repo>` de referencia:
   2. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
 
 - `<archivo_2>` - <una línea sobre qué demuestra>
+
+Qué resuelve cada función:
+
+`nombre_funcion(arg1, arg2)`
+
+Propósito: <qué problema resuelve, en una o dos frases>.
+
+- `arg1` (`<tipo>`): <qué es>
+- `arg2` (`<tipo>`, default `<valor>`): <qué es>
+
+Devuelve `<tipo>`: <qué regresa, incluidos los casos borde como None/vacío>.
+
+```python
+nombre_funcion(<input real de ejemplo>)
+```
+→ `<el output real, ya ejecutado>`
 
 Propuesta de nombre del notebook:
 `0N-<slug>.ipynb`
