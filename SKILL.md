@@ -70,19 +70,26 @@ Write a single `study_plan.md` inside the replica's notebooks directory. Its job
 
 **Per-section template — but only for the section currently being worked on.** Use the headers in whichever output language was confirmed in the calibration step; both fixed variants are given below (do not mix the two, and do not invent a third phrasing).
 
+For each reference file that is a **module** (defines functions/classes consumed elsewhere, as opposed to a config file, a raw data file, or a standalone script nobody imports), add a nested "used in" list: search the repo for where each of its functions/classes is actually imported and called, and name each call site with a one-line note on what it's used *for* and roughly *where* in that caller's flow. This is what lets the reader see a function's real callers before writing a notebook cell that exercises it — don't skip the search and guess. Files that aren't modules (nothing else in the repo imports from them) get no "used in" list at all — don't force one.
+
 English:
 
 ```markdown
 ## N. <topic>
 
 Reference files in the original repo:
-    `<file>` - <one line on what it demonstrates>
+  - `<file>` - <one line on what it demonstrates>
+        Used in (only if this file is a module):
+        1. `<caller file>` - uses it for <what> in <where in that file's flow>
+        2. `<caller file>` - uses it for <what> in <where in that file's flow>
+  - `<file_2>` - <one line on what it demonstrates>
 
 Proposed notebook name:
 `0N-<slug>.ipynb`
 
 Supporting material:
-    `<support file prepared for this section>` - <what it exemplifies>
+  - `<support file prepared for this section>` - <what it exemplifies>
+  - `<support file prepared for this section>` - <what it exemplifies>
 ```
 
 Español:
@@ -90,14 +97,19 @@ Español:
 ```markdown
 ## N. <tema>
 
-Archivos de referencia en el repo original:
-    `<archivo>` - <una línea sobre qué demuestra>
+Archivos de `<repo>` de referencia:
+  - `<archivo>` - <una línea sobre qué demuestra>
+        Se utiliza en (solo si este archivo es un módulo):
+        1. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
+        2. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
+  - `<archivo_2>` - <una línea sobre qué demuestra>
 
 Propuesta de nombre del notebook:
 `0N-<slug>.ipynb`
 
 Material de apoyo:
-    `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
+  - `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
+  - `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
 ```
 
 **Every other section gets only:**
