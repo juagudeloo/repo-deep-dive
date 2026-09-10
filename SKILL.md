@@ -96,9 +96,9 @@ English:
 
 ### What each function is for
 
-Each function signature is its own `####` heading — not an inline code span — so it's visually distinct from ordinary inline code references (like an argument name mentioned in a sentence) and shows up in an outline/table-of-contents view. Don't use HTML/CSS for this (e.g. a colored `<span>`): it's ignored by GitHub's sanitizer and inconsistent across renderers, whereas a heading is plain Markdown that renders the same everywhere.
+Each function signature is its own `####` heading — not an inline code span — so it's visually distinct from ordinary inline code references (like an argument name mentioned in a sentence) and shows up in an outline/table-of-contents view. Don't use HTML/CSS for this (e.g. a colored `<span>`): it's ignored by GitHub's sanitizer and inconsistent across renderers, whereas a heading is plain Markdown that renders the same everywhere. Letter each one (a, b, c…) when a section covers more than one function — this visually sets the "function purposes" list apart from the numbered "used in" list above it, which counts callers, not functions.
 
-#### `function_name(arg1, arg2)`
+#### a) `function_name(arg1, arg2)`
 
 Purpose: <what problem this function solves, in one or two sentences>.
 
@@ -142,7 +142,7 @@ Español:
 
 ### Qué resuelve cada función
 
-#### `nombre_funcion(arg1, arg2)`
+#### a) `nombre_funcion(arg1, arg2)`
 
 Propósito: <qué problema resuelve, en una o dos frases>.
 
