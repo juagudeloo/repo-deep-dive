@@ -72,7 +72,7 @@ Write a single `study_plan.md` inside the replica's notebooks directory. Its job
 
 For each reference file that is a **module** (defines functions/classes consumed elsewhere, as opposed to a config file, a raw data file, or a standalone script nobody imports), fill in "Where they're used"/"Dónde se usan": search the repo for where each function/class is actually imported and called, and name each call site with a one-line note on what it's used *for* and roughly *where* in that caller's flow — don't skip the search and guess. If a section has more than one reference file, group this subsection by file using the file name in bold as a plain lead-in line (not a list item — see the template), never nested. Omit the whole subsection if none of the section's reference files are modules.
 
-For each function or method the section is actually about (not every private helper in the file — just the ones the notebook will exercise), fill in "What each function is for"/"Qué resuelve cada función": a Google-style summary (purpose, `Args` with types, `Returns`/`Raises` with types) plus at least one worked example. **Run the example for real and paste its actual output — never compute it by hand.** String/regex transformations are exactly the kind of thing that looks obvious and is subtly wrong; a hand-guessed "expected" output that doesn't match the real function teaches the wrong lesson. Prefer an example that demonstrates *why the function exists* (e.g., two differently-formatted inputs that collapse to the identical output) over an arbitrary happy-path call.
+For each function or method the section is actually about (not every private helper in the file — just the ones the notebook will exercise), fill in "What each function is for"/"Qué resuelve cada función": a Google-style summary (purpose, `Args` with types, `Returns`/`Raises` with types) plus at least one worked example. **Run the example for real and paste its actual output — never compute it by hand.** String/regex transformations are exactly the kind of thing that looks obvious and is subtly wrong; a hand-guessed "expected" output that doesn't match the real function teaches the wrong lesson. Prefer an example that demonstrates *why the function exists* (e.g., two differently-formatted inputs that collapse to the identical output) over an arbitrary happy-path call. Close each function's block with a one-line "Used in"/"Se usa en" listing just the file names that call *this specific* function — reuse the same search already done for "Where they're used" above, filtered down to this one function, rather than searching again from scratch or guessing.
 
 **Markdown formatting:** within a subsection, keep lists flat (no nesting) — a blank line before and after any list, no indentation deeper than a plain top-level bullet needs. Function names, `Args`/`Returns` bullets, and code examples are all plain top-level content under their `###` heading, never nested inside something else.
 
@@ -111,6 +111,8 @@ Returns `<type>`: <what comes back, including edge cases like None/empty>.
 function_name(<real example input>)
 ```
 → `<the real, executed output>`
+
+Used in: `<file>`, `<file_2>`.
 
 ### Proposed notebook name
 
@@ -155,6 +157,8 @@ Devuelve `<tipo>`: <qué regresa, incluidos los casos borde como None/vacío>.
 nombre_funcion(<input real de ejemplo>)
 ```
 → `<el output real, ya ejecutado>`
+
+Se usa en: `<archivo>`, `<archivo_2>`.
 
 ### Propuesta de nombre del notebook
 
