@@ -68,32 +68,33 @@ Write a single `study_plan.md` inside the replica's notebooks directory. Its job
 
 **Ordering principle:** move from the most concrete/data-facing concept to the most abstract, then to how it's assembled into the whole system, then to business logic layered on top of the core algorithm's raw output, then to how it scales or deploys. Roughly: (1) data cleaning/representation → (2) the core algorithm, built from its smallest sub-piece up to the full thing → (3) business rules/post-processing on top of the algorithm's output → (4) orchestration/scaling/deployment → (5) anything not yet built, listed last, not skipped.
 
-**Per-section template — but only for the section currently being worked on.** Use the headers in whichever output language was confirmed in the calibration step; both fixed variants are given below (do not mix the two, and do not invent a third phrasing).
+**Per-section template — but only for the section currently being worked on.** Use the headers in whichever output language was confirmed in the calibration step; both fixed variants are given below (do not mix the two, and do not invent a third phrasing). Each part is its own `###` subsection under the section's `##` heading — this is deliberate, not decoration: it keeps each part scannable on its own, gives the reader a proper outline/table-of-contents entry per part in tools that build one from headings, and (as a side benefit) sidesteps Markdown's fragile nested-list rendering entirely — nothing here needs to nest inside a bullet anymore, including "used in", which is now its own subsection rather than content tucked inside a reference-file bullet.
 
-For each reference file that is a **module** (defines functions/classes consumed elsewhere, as opposed to a config file, a raw data file, or a standalone script nobody imports), add a nested "used in" list: search the repo for where each of its functions/classes is actually imported and called, and name each call site with a one-line note on what it's used *for* and roughly *where* in that caller's flow. This is what lets the reader see a function's real callers before writing a notebook cell that exercises it — don't skip the search and guess. Files that aren't modules (nothing else in the repo imports from them) get no "used in" list at all — don't force one.
+For each reference file that is a **module** (defines functions/classes consumed elsewhere, as opposed to a config file, a raw data file, or a standalone script nobody imports), fill in "Where they're used"/"Dónde se usan": search the repo for where each function/class is actually imported and called, and name each call site with a one-line note on what it's used *for* and roughly *where* in that caller's flow — don't skip the search and guess. If a section has more than one reference file, group this subsection by file using the file name in bold as a plain lead-in line (not a list item — see the template), never nested. Omit the whole subsection if none of the section's reference files are modules.
 
-**Markdown formatting matters here** — this nested structure only renders as an actual list (not a single run-on paragraph) if it follows standard Markdown list rules: a blank line before the nested "Used in"/"Se utiliza en" block, and its content indented exactly 2 spaces (aligned under a `- ` bullet's own text, not deeper). Don't indent by 4+ spaces or skip the blank line — both cause common renderers to collapse the whole thing into one paragraph. The templates below already show the correct spacing; copy it exactly.
+For each function or method the section is actually about (not every private helper in the file — just the ones the notebook will exercise), fill in "What each function is for"/"Qué resuelve cada función": a Google-style summary (purpose, `Args` with types, `Returns`/`Raises` with types) plus at least one worked example. **Run the example for real and paste its actual output — never compute it by hand.** String/regex transformations are exactly the kind of thing that looks obvious and is subtly wrong; a hand-guessed "expected" output that doesn't match the real function teaches the wrong lesson. Prefer an example that demonstrates *why the function exists* (e.g., two differently-formatted inputs that collapse to the identical output) over an arbitrary happy-path call.
 
-**For each function or method the section is actually about** (not every private helper in the file — just the ones the notebook will exercise), add a flat "function purposes" block: a Google-style summary (purpose, `Args` with types, `Returns`/`Raises` with types) plus at least one worked example. **Run the example for real and paste its actual output — never compute it by hand.** String/regex transformations are exactly the kind of thing that looks obvious and is subtly wrong; a hand-guessed "expected" output that doesn't match the real function teaches the wrong lesson. Prefer an example that demonstrates *why the function exists* (e.g., two differently-formatted inputs that collapse to the identical output) over an arbitrary happy-path call.
-
-Keep this flat too, for the same rendering reason as above: the function name as its own inline-code line (not a list item), `Args`/`Returns` as a plain top-level bullet list, then a fenced code example followed by its real output — no nesting.
+**Markdown formatting:** within a subsection, keep lists flat (no nesting) — a blank line before and after any list, no indentation deeper than a plain top-level bullet needs. Function names, `Args`/`Returns` bullets, and code examples are all plain top-level content under their `###` heading, never nested inside something else.
 
 English:
 
 ```markdown
 ## N. <topic>
 
-Reference files in the original repo:
+### Reference files
 
 - `<file>` - <one line on what it demonstrates>
-
-  Used in (only if this file is a module):
-  1. `<caller file>` - uses it for <what> in <where in that file's flow>
-  2. `<caller file>` - uses it for <what> in <where in that file's flow>
-
 - `<file_2>` - <one line on what it demonstrates>
 
-What each function is for:
+### Where they're used
+
+(omit this subsection if no reference file above is a module)
+
+**`<file>`**
+1. `<caller file>` - uses it for <what> in <where in that file's flow>
+2. `<caller file>` - uses it for <what> in <where in that file's flow>
+
+### What each function is for
 
 `function_name(arg1, arg2)`
 
@@ -109,10 +110,11 @@ function_name(<real example input>)
 ```
 → `<the real, executed output>`
 
-Proposed notebook name:
+### Proposed notebook name
+
 `0N-<slug>.ipynb`
 
-Supporting material:
+### Supporting material
 
 - `<support file prepared for this section>` - <what it exemplifies>
 - `<support file prepared for this section>` - <what it exemplifies>
@@ -123,17 +125,20 @@ Español:
 ```markdown
 ## N. <tema>
 
-Archivos de `<repo>` de referencia:
+### Archivos de referencia
 
 - `<archivo>` - <una línea sobre qué demuestra>
-
-  Se utiliza en (solo si este archivo es un módulo):
-  1. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
-  2. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
-
 - `<archivo_2>` - <una línea sobre qué demuestra>
 
-Qué resuelve cada función:
+### Dónde se usan
+
+(omitir esta subsección si ningún archivo de referencia de arriba es un módulo)
+
+**`<archivo>`**
+1. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
+2. `<archivo que lo usa>` - lo usa para <qué> en <dónde de su flujo>
+
+### Qué resuelve cada función
 
 `nombre_funcion(arg1, arg2)`
 
@@ -149,10 +154,11 @@ nombre_funcion(<input real de ejemplo>)
 ```
 → `<el output real, ya ejecutado>`
 
-Propuesta de nombre del notebook:
+### Propuesta de nombre del notebook
+
 `0N-<slug>.ipynb`
 
-Material de apoyo:
+### Material de apoyo
 
 - `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
 - `<archivo de apoyo preparado para esta sección>` - <qué ejemplifica>
