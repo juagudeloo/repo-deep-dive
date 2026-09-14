@@ -172,6 +172,16 @@ Se usa en: [`<archivo>`](<ruta-relativa>), [`<archivo_2>`](<ruta-relativa>).
 - [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica>
 ```
 
+**Once the notebook for a section is actually finished** (the reader confirms it — see step 4 of the working loop below), retire the forward-looking placeholder: delete that section's `### Proposed notebook name`/`### Propuesta de nombre del notebook` subsection entirely, and add a new `### Development notebook`/`### Notebook de desarrollo` subsection in its place — but moved to the very *top* of the topic's block, right after the `## N. <topic>` heading and before `### Reference files`/`### Archivos de referencia`. It holds a clickable relative link to the real notebook file the reader wrote, using the same link convention as everywhere else in the plan:
+
+```markdown
+### Development notebook
+
+[`01-normalization.ipynb`](01-normalization.ipynb)
+```
+
+(Spanish: `### Notebook de desarrollo`, same content otherwise.) The real filename may differ from the proposed slug — use whatever the reader actually named it. This turns each finished topic's block from a forward-looking checklist into a running index of what was actually built, with a working link straight to it, visible before anything else in that section.
+
 **Every other section gets only:**
 
 ```markdown
@@ -186,7 +196,8 @@ Nothing else for the inactive sections — no file list, no notebook name, no su
 1. For the active section only, prepare **supporting material** — fixtures, small data samples, deliberately chosen edge cases — ideally pulled from real data already in the repo rather than invented from scratch (real messy data teaches better and surfaces genuine gotchas a clean synthetic example would hide). Never write the notebook itself, and never write example or solution code inside it — the reader builds the notebook, its code, and its explanation.
 2. Point the reader toward this notebook shape once (referencing their own reference notebooks if they have some, matching that style) rather than reproducing it yourself each time: a markdown cell stating the concept/math *before* any code; the real function or class with its full docstring; an immediate small-scale demo printing shapes or outputs; build from the smallest sub-piece up to the composed whole; a cross-check (e.g. an `assert`) between a manual calculation and the real code's output.
 3. Stop, and wait for the reader to say they've finished that notebook.
-4. Only then fill in the next section's full template (files, notebook name, support material) and repeat.
+4. Once they confirm it's finished, replace that section's `### Proposed notebook name`/`### Propuesta de nombre del notebook` subsection with a `### Development notebook`/`### Notebook de desarrollo` subsection at the top of the block, linking to the real notebook file (see the note above the templates).
+5. Only then fill in the next section's full template (files, notebook name, support material) and repeat.
 
 ### Track improvement ideas as they surface, in their own document
 
