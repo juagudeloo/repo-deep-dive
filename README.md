@@ -32,3 +32,9 @@ In a Claude Code session, inside any repo you want to understand:
 or just describe what you want in your own words (e.g. "help me understand
 this codebase and build a study plan for it") — the skill's description
 covers those trigger phrases too.
+
+## Credits
+
+The reader-level scale and the "how do you best internalize a new concept"
+calibration question are adapted from the dialogic-bootstrapping teaching
+methodology in [SwRI-IDEA-Lab/vocal_prompt](https://github.com/SwRI-IDEA-Lab/vocal_prompt).
