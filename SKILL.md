@@ -149,10 +149,6 @@ Defined in: [`<file>`](<relative-path>).
 
 Used in: [`<file>`](<relative-path>), [`<file_2>`](<relative-path>).
 
-### Proposed notebook name
-
-`0N-<slug>.ipynb`
-
 ### Supporting material
 
 - [`<support file prepared for this section>`](<relative-path>) - <what it exemplifies>
@@ -197,25 +193,54 @@ Se define en: [`<archivo>`](<ruta-relativa>).
 
 Se usa en: [`<archivo>`](<ruta-relativa>), [`<archivo_2>`](<ruta-relativa>).
 
-### Propuesta de nombre del notebook
-
-`0N-<slug>.ipynb`
-
 ### Material de apoyo
 
 - [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica>
 - [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica>
 ```
 
-**Once the notebook for a section is actually finished** (the reader confirms it — see step 4 of the working loop below), retire the forward-looking placeholder: delete that section's `### Proposed notebook name`/`### Propuesta de nombre del notebook` subsection entirely, and add a new `### Development notebook`/`### Notebook de desarrollo` subsection in its place — but moved to the very *top* of the topic's block, right after the `## N. <topic>` heading and before `### Reference files`/`### Archivos de referencia`. It holds a clickable relative link to the real notebook file the reader wrote, using the same link convention as everywhere else in the plan:
+### Notebooks group topics, not one-per-topic
+
+A notebook is not "one per topic" — it's one per coherent arc that ends in a clear deliverable.
+Several consecutive topics normally share a single notebook (e.g. "understand and replicate the
+core algorithm" can span the sub-piece, the composed whole, and a cross-check against the real
+code's output — all one notebook, one continuous narrative). A new notebook starts only when a
+topic begins a genuinely different arc — a new deliverable, not just the next step of the same one
+— even if it reuses objects or outputs from the previous notebook.
+
+**When a topic becomes active** (step 5 of the working loop below), decide whether it continues the
+current notebook or starts a new one. This is usually obvious from the topic itself (does it
+culminate the arc already in progress, or start a new one), but when it's genuinely ambiguous, ask
+the reader rather than guessing — they're the one who'll be writing the file. A topic that starts a
+new notebook typically reuses state from the previous one; say so explicitly and let the reader
+rebuild that state at the top of the new notebook (rerun the relevant cells, or load a saved/cached
+artifact) — notebooks should not depend on cross-notebook Python state, only on files each one can
+point to.
+
+Maintain a single `## Notebooks` index near the top of `study_plan.md`, source of truth for names,
+scope, and links — not repeated inside every topic's block:
 
 ```markdown
-### Development notebook
+## Notebooks
 
-[`01-normalization.ipynb`](../<replica>/notebooks/01-normalization.ipynb)
+| Notebook | Temas | Tema general | Estado |
+|---|---|---|---|
+| [`01-<slug>.ipynb`](<relative-path>) | 1–N | <one-line topic> | Terminado |
+| `02-<slug>.ipynb` (propuesto) | N+1– | <one-line topic> | En curso |
 ```
 
-(Spanish: `### Notebook de desarrollo`, same content otherwise. The relative path is computed the same way as any other file reference — from `docs/study_plan.md`'s location, per the note above the templates.) The real filename may differ from the proposed slug — use whatever the reader actually named it. This turns each finished topic's block from a forward-looking checklist into a running index of what was actually built, with a working link straight to it, visible before anything else in that section.
+Update this table's status and add the real link once the reader confirms a notebook is actually
+finished — the real filename may differ from the proposed slug, use whatever the reader actually
+named it. Where a topic starts a new notebook, add one line right under its `## N. <topic>` heading
+marking the transition, so it's visible without checking the index:
+
+```markdown
+**Empieza notebook nuevo:** `0N-<slug>.ipynb` — <one line on why this is a different arc, not just
+the next step of the previous one>.
+```
+
+Topics that continue the current notebook get no such line — silence means "same notebook as the
+topic before it."
 
 **Every other section gets only:**
 
@@ -230,9 +255,9 @@ Nothing else for the inactive sections — no file list, no notebook name, no su
 
 1. For the active section only, prepare **supporting material** — fixtures, small data samples, deliberately chosen edge cases — ideally pulled from real data already in the repo rather than invented from scratch (real messy data teaches better and surfaces genuine gotchas a clean synthetic example would hide). Never write the notebook itself, and never write example or solution code inside it — the reader builds the notebook, its code, and its explanation.
 2. Point the reader toward this notebook shape once (referencing their own reference notebooks if they have some, matching that style) rather than reproducing it yourself each time: a markdown cell stating the concept/math *before* any code; the real function or class with its full docstring; an immediate small-scale demo printing shapes or outputs; build from the smallest sub-piece up to the composed whole; a cross-check (e.g. an `assert`) between a manual calculation and the real code's output.
-3. Stop, and wait for the reader to say they've finished that notebook.
-4. Once they confirm it's finished, replace that section's `### Proposed notebook name`/`### Propuesta de nombre del notebook` subsection with a `### Development notebook`/`### Notebook de desarrollo` subsection at the top of the block, linking to the real notebook file (see the note above the templates).
-5. Only then fill in the next section's full template (files, notebook name, support material) and repeat.
+3. Stop, and wait for the reader to say they've finished that section (written its code, in whichever notebook is currently active).
+4. If that section was the last one in its notebook's arc, update the `## Notebooks` index (status + real link to the file, see above) once the reader confirms the notebook itself is done, not just the section.
+5. Only then fill in the next section's full template (files, support material) — deciding first whether it continues the current notebook or starts a new one (see "Notebooks group topics" above) — and repeat.
 
 ### Track improvement ideas as they surface, in their own document
 
