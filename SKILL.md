@@ -76,6 +76,7 @@ Start this only once the reader has read the summary and wants to go deeper hand
 - A `docs/` directory at the workspace root, sibling to the replica (not nested inside it, and not inside the replica's `notebooks/` folder) — this is where `study_plan.md` and `improvement_ideas.md` live (see below), kept separate from the notebooks themselves for organization. If the reader already has a `docs/` folder for other planning material, use that same one rather than creating a second.
 - A real, isolated environment. Prefer a real virtual environment (stdlib `venv`, or `uv venv` / `uv sync` if a manifest exists) over conda: conda repeatedly causes friction in restricted/sandboxed environments (locked cache and env directories, solver failures), and — unlike a real venv — does not isolate the user's personal global site-packages by default, which silently leaks unrelated personal packages into `pip list`. Reach for conda only when there's a genuine non-Python system dependency that pip/uv truly can't provide.
 - If the reader has their own reference material in an established pedagogical style (old course or project notebooks, a personal template), read a sample of it first and match that exact structure and tone — don't impose a generic template over one they've already built and trust.
+- Name the fixtures/support-material directory `support_material/`, never `tests/` — the latter reads as a real unit-test suite and collides with one the replica may genuinely need later (once this methodology's own notebooks are done and the reader wants real test coverage for the code they wrote). Rename on sight if an earlier session already created a `tests/` directory for this purpose, updating every notebook import and every `study_plan.md`/`improvement_ideas.md` reference to match.
 
 ### Build the study plan document, not the notebooks
 
@@ -114,6 +115,11 @@ English:
 ```markdown
 ## N. <topic>
 
+### Supporting material
+
+- [`<support file prepared for this section>`](<relative-path>) - <what it exemplifies, and what to import from it>
+- [`<support file prepared for this section>`](<relative-path>) - <what it exemplifies, and what to import from it>
+
 ### Reference files
 
 - [`<file>`](<relative-path>) - <one line on what it demonstrates>
@@ -148,17 +154,17 @@ function_name(<real example input>)
 Defined in: [`<file>`](<relative-path>).
 
 Used in: [`<file>`](<relative-path>), [`<file_2>`](<relative-path>).
-
-### Supporting material
-
-- [`<support file prepared for this section>`](<relative-path>) - <what it exemplifies>
-- [`<support file prepared for this section>`](<relative-path>) - <what it exemplifies>
 ```
 
 Español:
 
 ```markdown
 ## N. <tema>
+
+### Material de apoyo
+
+- [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica, y qué importar de ahí>
+- [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica, y qué importar de ahí>
 
 ### Archivos de referencia
 
@@ -192,11 +198,6 @@ nombre_funcion(<input real de ejemplo>)
 Se define en: [`<archivo>`](<ruta-relativa>).
 
 Se usa en: [`<archivo>`](<ruta-relativa>), [`<archivo_2>`](<ruta-relativa>).
-
-### Material de apoyo
-
-- [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica>
-- [`<archivo de apoyo preparado para esta sección>`](<ruta-relativa>) - <qué ejemplifica>
 ```
 
 ### Notebooks group topics, not one-per-topic
