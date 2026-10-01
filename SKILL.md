@@ -86,6 +86,8 @@ Write a single `study_plan.md` in the workspace-root `docs/` directory (see "Set
 
 **Per-section template — but only for the section currently being worked on.** Use the headers in whichever output language was confirmed in the calibration step; both fixed variants are given below (do not mix the two, and do not invent a third phrasing). Each part is its own `###` subsection under the section's `##` heading — this is deliberate, not decoration: it keeps each part scannable on its own, gives the reader a proper outline/table-of-contents entry per part in tools that build one from headings, and (as a side benefit) sidesteps Markdown's fragile nested-list rendering entirely — nothing here needs to nest inside a bullet anymore, including "used in", which is now its own subsection rather than content tucked inside a reference-file bullet.
 
+**Every active section opens with a short plain-language paragraph**, right after the `## N. <topic>` heading and before any subsection (including "Supporting material"/"Material de apoyo") — what this topic is about and why it matters in the pipeline as a whole, at the reader's calibrated level. For an inactive section, the existing one-line summary already serves this role; don't add a second, longer paragraph on top of it.
+
 For each reference file that is a **module** (defines functions/classes consumed elsewhere, as opposed to a config file, a raw data file, or a standalone script nobody imports), fill in "Where they're used"/"Dónde se usan": search the repo for where each function/class is actually imported and called, and name each call site with a one-line note on what it's used *for* and roughly *where* in that caller's flow — don't skip the search and guess. If a section has more than one reference file, group this subsection by file using the file name in bold as a plain lead-in line (not a list item — see the template), never nested. Omit the whole subsection if none of the section's reference files are modules.
 
 For each function or method the section is actually about (not every private helper in the file — just the ones the notebook will exercise), fill in "What each function is for"/"Qué resuelve cada función": a Google-style summary (purpose, `Args` with types, `Returns`/`Raises` with types) plus **one worked example per distinct behavior described in its Purpose** — not just one example overall. If the purpose paragraph mentions a base case, a special case, and a tie-breaking rule (e.g. "collapses duplicates, rejects conflicts, and lets a later value win a collision"), that's three examples, one per clause, not one example that only covers the first. Skipping the others isn't saving space, it's leaving the documented behavior unverified. **Run every example for real and paste its actual output — never compute it by hand.** String/regex transformations are exactly the kind of thing that looks obvious and is subtly wrong; a hand-guessed "expected" output that doesn't match the real function teaches the wrong lesson — this caught a real signature error once (a documented default that didn't actually exist on the function, only on its caller). Prefer an example that demonstrates *why the function exists* (e.g., two differently-formatted inputs that collapse to the identical output) over an arbitrary happy-path call.
@@ -114,6 +116,8 @@ English:
 
 ```markdown
 ## N. <topic>
+
+<one short plain-language paragraph: what this topic is about and why it matters>
 
 ### Supporting material
 
@@ -160,6 +164,8 @@ Español:
 
 ```markdown
 ## N. <tema>
+
+<un párrafo corto en lenguaje llano: de qué trata este tema y por qué importa>
 
 ### Material de apoyo
 
